@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0.0",
+  "collection_id": "offline-defensive-foundations",
+  "audience": "adult",
+  "feature_control": {
+    "enabled_by_default": true,
+    "disable_env": "SCL_LABS_ENABLED",
+    "disabled_value": "0",
+    "off_behavior": "legacy_unchanged"
+  },
+  "challenges": [
+    {
+      "id": "lab-message-review-01",
+      "category": "communication_safety",
+      "difficulty": "introductory",
+      "title": "Verify an unexpected account message",
+      "estimated_minutes": 5,
+      "learning_goal": "Identify a low-risk verification path when a message requests urgent action.",
+      "scenario": {
+        "context": "A fictional account notice says that access will end soon unless the recipient acts immediately.",
+        "artifacts": [{"id": "notice", "kind": "message_summary", "label": "Unverified message", "body": "The message demands immediate confirmation and offers an unfamiliar shortcut to account settings. No live address or link is supplied."}],
+        "question": "Which action best protects the account while checking whether the notice is genuine?"
+      },
+      "assessment": {
+        "type": "single_select",
+        "choices": [{"id": "a", "text": "Reply with a password to confirm ownership."}, {"id": "b", "text": "Open account settings through a previously trusted route and review notifications there."}, {"id": "c", "text": "Forward the message to every contact for a vote."}],
+        "correct_choice_id": "b",
+        "rationale": "Independent verification avoids trusting instructions carried by the unverified message.",
+        "incorrect_feedback": "Review where the request came from and choose a verification route you already trust."
+      },
+      "accessibility": {"screen_reader_instructions": "Read the situation and three labelled choices, then select one answer.", "keyboard_instructions": "Use normal focus navigation to reach each choice and activate the selected answer."},
+      "safety": {"offline_only": true, "defensive_training_only": true, "no_live_targets": true, "no_executable_artifacts": true}
+    },
+    {
+      "id": "lab-backup-hygiene-01",
+      "category": "data_protection",
+      "difficulty": "introductory",
+      "title": "Protect a working document backup",
+      "estimated_minutes": 5,
+      "learning_goal": "Select an independent recovery option for an important local document.",
+      "scenario": {
+        "context": "A fictional team stores all important documents on one laptop, and every copy is in the same folder.",
+        "artifacts": [{"id": "inventory", "kind": "observation", "label": "Storage inventory", "body": "There is one device and one active working folder. No independent backup or restore drill is recorded."}],
+        "question": "Which next step provides the strongest practical improvement in recoverability?"
+      },
+      "assessment": {
+        "type": "single_select",
+        "choices": [{"id": "a", "text": "Make more copies inside the same folder."}, {"id": "b", "text": "Rename the document to a longer name."}, {"id": "c", "text": "Create an independently stored backup and periodically test a restore."}],
+        "correct_choice_id": "c",
+        "rationale": "A separate backup and a tested restore process reduce dependence on the working device.",
+        "incorrect_feedback": "Consider which option still works when the original device or folder is unavailable."
+      },
+      "accessibility": {"screen_reader_instructions": "The inventory is a text description; no visual diagram is required.", "keyboard_instructions": "Each answer is reachable and selectable using keyboard focus controls."},
+      "safety": {"offline_only": true, "defensive_training_only": true, "no_live_targets": true, "no_executable_artifacts": true}
+    },
+    {
+      "id": "lab-device-permissions-01",
+      "category": "device_hygiene",
+      "difficulty": "introductory",
+      "title": "Review unnecessary application access",
+      "estimated_minutes": 4,
+      "learning_goal": "Apply least privilege to optional device access permissions.",
+      "scenario": {
+        "context": "A fictional note-taking application requests access to location and microphone features even though the user only types text.",
+        "artifacts": [{"id": "permission", "kind": "policy_note", "label": "Requested permissions", "body": "The current workflow uses only typed notes; no spoken input or location-specific feature has been enabled."}],
+        "question": "What is the most appropriate initial permission choice?"
+      },
+      "assessment": {
+        "type": "single_select",
+        "choices": [{"id": "a", "text": "Deny unnecessary permissions and revisit them only if a needed feature requires access."}, {"id": "b", "text": "Approve every permission permanently to avoid future prompts."}, {"id": "c", "text": "Ignore the permissions list and share the device unlock code."}],
+        "correct_choice_id": "a",
+        "rationale": "Granting only access required by the current task limits unnecessary exposure.",
+        "incorrect_feedback": "Check whether each requested permission is needed for the feature being used."
+      },
+      "accessibility": {"screen_reader_instructions": "All permission requests appear in the written artifact description.", "keyboard_instructions": "Navigate to each option and activate exactly one response."},
+      "safety": {"offline_only": true, "defensive_training_only": true, "no_live_targets": true, "no_executable_artifacts": true}
+    },
+    {
+      "id": "lab-account-recovery-01",
+      "category": "account_safety",
+      "difficulty": "intermediate",
+      "title": "Safeguard account recovery methods",
+      "estimated_minutes": 7,
+      "learning_goal": "Assess recovery readiness without exposing secrets or relying on only one device.",
+      "scenario": {
+        "context": "An adult learner is reviewing a fictional account that has one memorized password and no documented recovery options.",
+        "artifacts": [{"id": "review", "kind": "checklist", "label": "Recovery checklist", "body": "Unique credentials are enabled. A second verification factor and securely stored recovery codes have not been reviewed."}],
+        "question": "Which combination is the best next improvement?"
+      },
+      "assessment": {
+        "type": "single_select",
+        "choices": [{"id": "a", "text": "Share recovery codes in a public discussion so they cannot be lost."}, {"id": "b", "text": "Enable an available additional verification factor and store recovery information privately and separately."}, {"id": "c", "text": "Disable every recovery method to avoid maintaining it."}],
+        "correct_choice_id": "b",
+        "rationale": "Additional verification and protected, independent recovery options improve resilience.",
+        "incorrect_feedback": "Look for an option that strengthens both sign-in protection and safe recovery."
+      },
+      "accessibility": {"screen_reader_instructions": "The checklist and all options are presented as straightforward text.", "keyboard_instructions": "Use standard selection controls to choose one response without pointer input."},
+      "safety": {"offline_only": true, "defensive_training_only": true, "no_live_targets": true, "no_executable_artifacts": true}
+    },
+    {
+      "id": "lab-incident-first-steps-01",
+      "category": "incident_response",
+      "difficulty": "intermediate",
+      "title": "Record and report a possible data exposure",
+      "estimated_minutes": 8,
+      "learning_goal": "Prioritize safe reporting and evidence preservation after a suspected access incident.",
+      "scenario": {
+        "context": "A fictional team member observes unexpected activity on a shared work device and is unsure whether sensitive material was accessed.",
+        "artifacts": [{"id": "timeline", "kind": "observation", "label": "Initial observation", "body": "A warning appeared during a routine session. The event has not been independently verified, and no response steps have been logged."}],
+        "question": "What should the team member do first under the documented response process?"
+      },
+      "assessment": {
+        "type": "single_select",
+        "choices": [{"id": "a", "text": "Erase all logs before notifying anyone."}, {"id": "b", "text": "Publish details and access credentials in an open forum."}, {"id": "c", "text": "Record the observation and report it promptly through the approved internal channel."}],
+        "correct_choice_id": "c",
+        "rationale": "Accurate documentation and prompt reporting support a controlled defensive response.",
+        "incorrect_feedback": "Choose the action that preserves information and involves the approved response team."
+      },
+      "accessibility": {"screen_reader_instructions": "The observation is provided in text and has no visual-only evidence.", "keyboard_instructions": "Move focus among the three options and submit the chosen answer."},
+      "safety": {"offline_only": true, "defensive_training_only": true, "no_live_targets": true, "no_executable_artifacts": true}
+    }
+  ]
+}

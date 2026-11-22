@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:scl:offline-challenges:collection:1",
+  "title": "Offline defensive training challenge collection",
+  "description": "Original, text-only scenarios evaluated without network requests or executable content.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "collection_id", "audience", "feature_control", "challenges"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "collection_id": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,63}$"},
+    "audience": {"const": "adult"},
+    "feature_control": {"$ref": "#/$defs/featureControl"},
+    "challenges": {
+      "type": "array", "minItems": 1, "maxItems": 100,
+      "items": {"$ref": "#/$defs/challenge"}
+    }
+  },
+  "$defs": {
+    "featureControl": {
+      "type": "object", "additionalProperties": false,
+      "required": ["enabled_by_default", "disable_env", "disabled_value", "off_behavior"],
+      "properties": {
+        "enabled_by_default": {"const": true},
+        "disable_env": {"const": "SCL_LABS_ENABLED"},
+        "disabled_value": {"const": "0"},
+        "off_behavior": {"const": "legacy_unchanged"}
+      }
+    },
+    "challenge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "category", "difficulty", "title", "estimated_minutes", "learning_goal", "scenario", "assessment", "accessibility", "safety"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^lab-[a-z0-9-]{3,64}$"},
+        "category": {"enum": ["account_safety", "device_hygiene", "data_protection", "communication_safety", "incident_response"]},
+        "difficulty": {"enum": ["introductory", "intermediate"]},
+        "title": {"$ref": "#/$defs/shortText"},
+        "estimated_minutes": {"type": "integer", "minimum": 2, "maximum": 30},
+        "learning_goal": {"$ref": "#/$defs/paragraph"},
+        "scenario": {
+          "type": "object", "additionalProperties": false,
+          "required": ["context", "artifacts", "question"],
+          "properties": {
+            "context": {"$ref": "#/$defs/paragraph"},
+            "artifacts": {"type": "array", "minItems": 1, "maxItems": 5, "items": {"$ref": "#/$defs/artifact"}},
+            "question": {"$ref": "#/$defs/paragraph"}
+          }
+        },
+        "assessment": {
+          "type": "object", "additionalProperties": false,
+          "required": ["type", "choices", "correct_choice_id", "rationale", "incorrect_feedback"],
+          "properties": {
+            "type": {"const": "single_select"},
+            "choices": {"type": "array", "minItems": 3, "maxItems": 5, "items": {"$ref": "#/$defs/choice"}},
+            "correct_choice_id": {"type": "string", "pattern": "^[a-e]$"},
+            "rationale": {"$ref": "#/$defs/paragraph"},
+            "incorrect_feedback": {"$ref": "#/$defs/paragraph"}
+          }
+        },
+        "accessibility": {
+          "type": "object", "additionalProperties": false,
+          "required": ["screen_reader_instructions", "keyboard_instructions"],
+          "properties": {
+            "screen_reader_instructions": {"$ref": "#/$defs/paragraph"},
+            "keyboard_instructions": {"$ref": "#/$defs/paragraph"}
+          }
+        },
+        "safety": {
+          "type": "object", "additionalProperties": false,
+          "required": ["offline_only", "defensive_training_only", "no_live_targets", "no_executable_artifacts"],
+          "properties": {
+            "offline_only": {"const": true},
+            "defensive_training_only": {"const": true},
+            "no_live_targets": {"const": true},
+            "no_executable_artifacts": {"const": true}
+          }
+        }
+      }
+    },
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "label", "body"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]{1,31}$"},
+        "kind": {"enum": ["policy_note", "observation", "message_summary", "checklist"]},
+        "label": {"$ref": "#/$defs/shortText"},
+        "body": {"$ref": "#/$defs/paragraph"}
+      }
+    },
+    "choice": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "text"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-e]$"},
+        "text": {"$ref": "#/$defs/paragraph"}
+      }
+    },
+    "shortText": {"type": "string", "minLength": 3, "maxLength": 100},
+    "paragraph": {"type": "string", "minLength": 12, "maxLength": 1500}
+  }
+}

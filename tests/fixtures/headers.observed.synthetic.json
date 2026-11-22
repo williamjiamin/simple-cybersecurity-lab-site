@@ -1,0 +1,39 @@
+{
+  "evidence_type": "observed_response_headers",
+  "source_class": "synthetic_test_fixture_only",
+  "responses": [
+    {
+      "page": "index.html",
+      "headers": {
+        "Content-Security-Policy": "default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; frame-ancestors 'none'; script-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'none'; connect-src 'none'",
+        "Strict-Transport-Security": "max-age=31536000",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "no-referrer",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "page": "privacy-policy.html",
+      "headers": {
+        "Content-Security-Policy": "default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; frame-ancestors 'none'; script-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'none'; connect-src 'none'",
+        "Strict-Transport-Security": "max-age=31536000",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "no-referrer",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "page": "support.html",
+      "headers": {
+        "Content-Security-Policy": "default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; frame-src 'none'; frame-ancestors 'none'; script-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'none'; connect-src 'none'",
+        "Strict-Transport-Security": "max-age=31536000",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "no-referrer",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "X-Frame-Options": "DENY"
+      }
+    }
+  ]
+}
