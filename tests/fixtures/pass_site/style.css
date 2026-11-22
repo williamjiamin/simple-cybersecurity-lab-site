@@ -1,0 +1,2 @@
+body { max-width: 64rem; margin: 1rem auto; padding: 1rem; font: 1.1rem/1.6 sans-serif; }
+a:focus, button:focus { outline: 3px solid currentColor; outline-offset: 3px; }
